@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DB1FF807
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spix.Domain", "src\Spix.Domain\Spix.Domain.csproj", "{DF60C8AC-04D1-43DE-8E31-4FDF0AB8D87C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spix.UnitTests", "Spix.UnitTests\Spix.UnitTests.csproj", "{CB2A5223-12D4-4B91-918A-BC3AA134AAA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,12 +21,17 @@ Global
 		{DF60C8AC-04D1-43DE-8E31-4FDF0AB8D87C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF60C8AC-04D1-43DE-8E31-4FDF0AB8D87C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF60C8AC-04D1-43DE-8E31-4FDF0AB8D87C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB2A5223-12D4-4B91-918A-BC3AA134AAA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB2A5223-12D4-4B91-918A-BC3AA134AAA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB2A5223-12D4-4B91-918A-BC3AA134AAA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB2A5223-12D4-4B91-918A-BC3AA134AAA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DF60C8AC-04D1-43DE-8E31-4FDF0AB8D87C} = {1E7AF97F-9E87-4E47-9D80-8DAD9E5F5658}
+		{CB2A5223-12D4-4B91-918A-BC3AA134AAA4} = {DB1FF807-9E7F-4F7E-BA2C-84F99AEEEACC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F466C67D-8816-4AA2-A2E4-521FC1E1C1FF}
