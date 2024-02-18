@@ -13,4 +13,5 @@ public class SpixerLikedDomainEvent : DomainEvent
         SpixerId = spixerId;
         UserId = userId;
     }
+
 }
