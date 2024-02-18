@@ -10,7 +10,7 @@ public class Spixer : Entity, IAggregateRoot
     public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
     public Guid UserId { get; private set; }
     public virtual User User { get; private set; } = null!;
-    public virtual List<Media> Medias { get; private set; } = new();
+    public virtual List<Media>? Medias { get; private set; } = new();
 
 
     public List<Guid> LikedByUsers { get; private set; } = new();
@@ -36,7 +36,7 @@ public class Spixer : Entity, IAggregateRoot
     }
 
     
-     public Spixer(string content, Guid userId, List<Media> medias)
+     public Spixer(string content, Guid userId, List<Media>? medias)
     {
         SetContent(content);
           UserId = userId;
