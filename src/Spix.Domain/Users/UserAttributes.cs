@@ -31,7 +31,7 @@ public class UserAttributes : ValueObjects
 
     public void SetFirstName(string firstName)
     {
-        i 
+        
         FirstName = firstName;
     }
     public void SetLastName(string lastName)
