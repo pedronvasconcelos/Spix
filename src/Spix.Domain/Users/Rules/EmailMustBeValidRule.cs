@@ -1,6 +1,6 @@
 ﻿
 
-using Spix.Domain.Abstraction;
+using Spix.Domain.Core;
 using System.Text.RegularExpressions;
 
 namespace Spix.Domain.Users.Rules;

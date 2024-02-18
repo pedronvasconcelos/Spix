@@ -1,5 +1,5 @@
 ﻿
-namespace Spix.Domain.Abstraction;
+namespace Spix.Domain.Core;
 
 public class DomainEvent : IDomainEvent
 {

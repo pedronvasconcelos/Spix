@@ -1,4 +1,4 @@
-﻿using Spix.Domain.Abstraction;
+﻿using Spix.Domain.Core;
 using Spix.Domain.Users.Rules;
 
 namespace Spix.Domain.Users;

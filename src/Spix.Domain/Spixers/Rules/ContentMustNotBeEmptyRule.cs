@@ -1,5 +1,5 @@
 ﻿
-using Spix.Domain.Abstraction;
+using Spix.Domain.Core;
 
 namespace Spix.Domain.Spixers.Rules;
 

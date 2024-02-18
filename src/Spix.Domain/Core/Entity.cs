@@ -1,4 +1,4 @@
-﻿namespace Spix.Domain.Abstraction;
+﻿namespace Spix.Domain.Core;
 
 public abstract class Entity
 {
