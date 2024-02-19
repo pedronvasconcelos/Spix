@@ -15,7 +15,7 @@ public class Spixer : Entity, IAggregateRoot
 
     public List<Guid> LikedByUsers { get; private set; } = new();
     public int LikesCount => LikedByUsers.Count;
-
+ 
 
     public void AddLike(Guid userId)
     {
