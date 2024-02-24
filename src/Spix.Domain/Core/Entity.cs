@@ -4,12 +4,12 @@ public abstract class Entity
 {
      public Guid Id { get; private set; } = Guid.NewGuid();
 
-    private List<IDomainEvent> _domainEvents = new List<IDomainEvent>();
+    private List<DomainEvent> _domainEvents = new List<DomainEvent>();
 
 
-    protected void AddDomainEvent(IDomainEvent domainEvent)
+    protected void AddDomainEvent(DomainEvent domainEvent)
     {
-        _domainEvents = _domainEvents ?? new List<IDomainEvent>();
+        _domainEvents = _domainEvents ?? new List<DomainEvent>();
         this._domainEvents.Add(domainEvent);
     }
 

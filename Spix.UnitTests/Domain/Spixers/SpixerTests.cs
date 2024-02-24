@@ -21,7 +21,7 @@ public class SpixerTests
 
 
         //Act
-        var spixer = new Spixer(content, userId, null);
+        var spixer = new Spixer(content, userId);
 
         //Assert
         spixer.Should().NotBeNull();
@@ -42,7 +42,7 @@ public class SpixerTests
         var userId = Guid.NewGuid();
 
         //Arrange
-        var spixer = new Spixer(content, userId, null);
+        var spixer = new Spixer(content, userId);
 
         //Assert
         spixer.Content.Should().Be(content);
@@ -61,7 +61,7 @@ public class SpixerTests
         var userId = Guid.NewGuid();
 
         // Act
-        var spixer = new Spixer(content, userId, null);
+        var spixer = new Spixer(content, userId);
 
         // Assert
         spixer.LikedByUsers.Should().BeEmpty();
@@ -77,7 +77,7 @@ public class SpixerTests
         // Arrange
         var content = "Test Content";
         var userId = Guid.NewGuid();
-        var spixer = new Spixer(content, userId, null);
+        var spixer = new Spixer(content, userId);
         var likerId = Guid.NewGuid();
 
         // Act
@@ -98,7 +98,7 @@ public class SpixerTests
         // Arrange
         var content = "Test Content";
         var userId = Guid.NewGuid();
-        var spixer = new Spixer(content, userId, null);
+        var spixer = new Spixer(content, userId);
         var likerId = Guid.NewGuid();
         spixer.AddLike(likerId);
 
@@ -121,7 +121,7 @@ public class SpixerTests
         var userId = Guid.NewGuid();
 
         // Act & Assert
-        Action act = () => new Spixer(invalidContent, userId, null);
+        Action act = () => new Spixer(invalidContent, userId);
         act.Should().Throw<BusinessRuleValidationException>();
     }
 
@@ -138,7 +138,7 @@ public class SpixerTests
         var userId = Guid.NewGuid();
 
         // Act & Assert
-        Action act = () => new Spixer(invalidContent, userId, null);
+        Action act = () => new Spixer(invalidContent, userId);
         act.Should().Throw<BusinessRuleValidationException>();
     }
 }
