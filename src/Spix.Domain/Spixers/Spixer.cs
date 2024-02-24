@@ -1,4 +1,4 @@
-﻿using Spix.Domain.Abstraction;
+﻿using Spix.Domain.Core;
 using Spix.Domain.Spixers.Rules;
 using Spix.Domain.Users;
 
@@ -10,11 +10,10 @@ public class Spixer : Entity, IAggregateRoot
     public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
     public Guid UserId { get; private set; }
     public virtual User User { get; private set; } = null!;
-    public virtual List<Media>? Medias { get; private set; } = new();
-
 
     public List<Guid> LikedByUsers { get; private set; } = new();
     public int LikesCount => LikedByUsers.Count;
+    public bool Active { get; private set; } = true;
 
 
     public void AddLike(Guid userId)
@@ -35,14 +34,18 @@ public class Spixer : Entity, IAggregateRoot
         }
     }
 
-    
-     public Spixer(string content, Guid userId, List<Media>? medias)
+
+    public Spixer(string content, Guid userId)
     {
         SetContent(content);
-          UserId = userId;
-        Medias = medias;
-     }
+        UserId = userId;
+        Active = true;
+    }
 
+    public void DeleteSpixer()
+    {
+        Active = false;
+    }
     private void SetContent(string content)
     {
         CheckRule(new ContentMustNotBeEmptyRule(content));
@@ -51,6 +54,8 @@ public class Spixer : Entity, IAggregateRoot
         Content = content;
     }
 
-
+    public Spixer()
+    { 
+    }
 
 }

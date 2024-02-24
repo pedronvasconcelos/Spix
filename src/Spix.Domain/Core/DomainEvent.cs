@@ -1,7 +1,7 @@
 ﻿
-namespace Spix.Domain.Abstraction;
+namespace Spix.Domain.Core;
 
-public class DomainEvent : IDomainEvent
+public class DomainEvent  
 {
     public DateTime OccurredOn { get;   }
 
