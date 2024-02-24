@@ -4,7 +4,7 @@ public abstract class Entity
 {
      public Guid Id { get; private set; } = Guid.NewGuid();
 
-    private List<DomainEvent> _domainEvents = new List<DomainEvent>();
+    public List<DomainEvent> _domainEvents = new List<DomainEvent>();
 
 
     protected void AddDomainEvent(DomainEvent domainEvent)
@@ -13,7 +13,7 @@ public abstract class Entity
         this._domainEvents.Add(domainEvent);
     }
 
-    protected void ClearDomainEvents()
+    public void ClearDomainEvents()
     {
         _domainEvents?.Clear();
     }   

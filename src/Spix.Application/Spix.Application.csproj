@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Spix.Domain\Spix.Domain.csproj" />
+    <ProjectReference Include="..\Spix.Domain\Spix.Domain.csproj" />
   </ItemGroup>
 
 </Project>

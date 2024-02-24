@@ -17,6 +17,7 @@ public class CreateSpixerCommandHandler : ICommandHandlerBase<CreateSpixerComman
 
     public async Task<ResultBase<CreateSpixerResponse>> Handle(CreateSpixerCommand request, CancellationToken cancellationToken)
     {
+
         var user = await _userRepository.GetAsync(request.UserId);
         if (user == null)
         {
@@ -25,6 +26,5 @@ public class CreateSpixerCommandHandler : ICommandHandlerBase<CreateSpixerComman
         var spixer = new Spixer(request.Content, user.Id);
         var addedSpixer = await _spixerRepository.AddAsync(spixer);
         return ResultBaseFactory.Successful(new CreateSpixerResponse(addedSpixer.Id, addedSpixer.Content), "Successs");
-
     }
 }
