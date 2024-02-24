@@ -9,6 +9,7 @@ public class Spixer : Entity, IAggregateRoot
     public string Content { get; private set; } = null!;
     public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
     public Guid UserId { get; private set; }
+    public virtual User User { get; private set; } = null!;
 
     public List<Guid> LikedByUsers { get; private set; } = new();
     public int LikesCount => LikedByUsers.Count;
@@ -54,8 +55,7 @@ public class Spixer : Entity, IAggregateRoot
     }
 
     public Spixer()
-    {
-
+    { 
     }
 
 }
