@@ -1,8 +1,9 @@
-﻿ 
+﻿
+using Spix.Domain.Core;
+
 namespace Spix.Domain.Spixers;
 
-public interface ISpixerRepository
+public interface ISpixerRepository : IRepository<Spixer>    
 {
-    public Task<Spixer> AddAsync(Spixer spixer);
-    public Task<Spixer> GetAsync(Guid id);
+    
 }

@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spix.Application", "src\Spi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spix.Infra", "src\Spix.Infra\Spix.Infra.csproj", "{237BC107-D6C8-4AE9-A86B-46A29AA100B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spix.Api", "src\Spix.Api\Spix.Api.csproj", "{4A950028-5995-4DF7-8949-9CC6DC7278D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{237BC107-D6C8-4AE9-A86B-46A29AA100B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{237BC107-D6C8-4AE9-A86B-46A29AA100B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{237BC107-D6C8-4AE9-A86B-46A29AA100B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A950028-5995-4DF7-8949-9CC6DC7278D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A950028-5995-4DF7-8949-9CC6DC7278D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A950028-5995-4DF7-8949-9CC6DC7278D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A950028-5995-4DF7-8949-9CC6DC7278D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{CB2A5223-12D4-4B91-918A-BC3AA134AAA4} = {DB1FF807-9E7F-4F7E-BA2C-84F99AEEEACC}
 		{D2223E87-C57F-4D79-86D0-3E24B683D574} = {1E7AF97F-9E87-4E47-9D80-8DAD9E5F5658}
 		{237BC107-D6C8-4AE9-A86B-46A29AA100B5} = {1E7AF97F-9E87-4E47-9D80-8DAD9E5F5658}
+		{4A950028-5995-4DF7-8949-9CC6DC7278D7} = {1E7AF97F-9E87-4E47-9D80-8DAD9E5F5658}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F466C67D-8816-4AA2-A2E4-521FC1E1C1FF}

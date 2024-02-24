@@ -43,6 +43,10 @@ public class User : Entity
         IsActive = true;
     }
 
+    public User()
+    {
+
+    }
 
 
 }
