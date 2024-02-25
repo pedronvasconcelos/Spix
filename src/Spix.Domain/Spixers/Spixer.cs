@@ -33,6 +33,10 @@ public class Spixer : Entity, IAggregateRoot
     }
 
 
+    public void Delete()
+    {
+        Active = false;
+    }
     public Spixer(string content, Guid userId)
     {
         SetContent(content);
