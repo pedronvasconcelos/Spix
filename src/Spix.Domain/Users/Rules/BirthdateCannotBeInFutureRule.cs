@@ -12,5 +12,5 @@ public class BirthdateCannotBeInFutureRule : IBusinessRule
     public string Message => "Birthdate cannot be in future";
 
     public bool IsBroken()
-     => _birthdate.Date > DateTime.Now.Date;      
+     => _birthdate.Date > DateTime.UtcNow.Date;      
 }

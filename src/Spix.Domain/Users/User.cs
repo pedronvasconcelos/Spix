@@ -4,7 +4,7 @@ using Spix.Domain.Spixers;
 
 namespace Spix.Domain.Users;
 
-public class User : Entity
+public class User : Entity, IAggregateRoot
 {
 
     public string UserName { get; private set; }
@@ -15,8 +15,8 @@ public class User : Entity
 
     public List<Spixer> Spixers { get; private set; } = new();
     public List<SpixerLike> SpixerLikes { get; private set; } = new();
-    public virtual List<User> Followers { get; private set; } = new();
-    public virtual List<User> Following { get; private set; } = new();
+    public  List<Guid> Followers { get; private set; } = new();
+    public List<Guid> Following { get; private set; } = new();
 
 
 
@@ -25,7 +25,7 @@ public class User : Entity
     public string Location { get; private set; }
     public string WebSite { get; set; }
 
-    public DateTime CreatedAt { get; private set; } = DateTime.Now;
+    public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; private set; } = null;
 
     public IReadOnlyList<Spixer> GetSpixers() => Spixers.AsReadOnly();

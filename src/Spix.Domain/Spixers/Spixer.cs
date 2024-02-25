@@ -1,4 +1,5 @@
 ﻿using Spix.Domain.Core;
+using Spix.Domain.Likes;
 using Spix.Domain.Spixers.Rules;
 using Spix.Domain.Users;
 
@@ -11,27 +12,24 @@ public class Spixer : Entity, IAggregateRoot
     public Guid UserId { get; private set; }
     public virtual User User { get; private set; } = null!;
 
-    public List<Guid> LikedByUsers { get; private set; } = new();
-    public int LikesCount => LikedByUsers.Count;
+    public virtual List<SpixerLike> SpixerLikes { get; private set; } = new();     
+    public int LikesCount { get; private set; }
     public bool Active { get; private set; } = true;
 
 
-    public void AddLike(Guid userId)
+    public void Like(SpixerLike like)
     {
-        if (!LikedByUsers.Contains(userId))
-        {
-            LikedByUsers.Add(userId);
-        }
-        AddDomainEvent(new SpixerLikedDomainEvent(this.Id, userId));
+  
+        SpixerLikes.Add(like);
+        LikesCount++;
+        AddDomainEvent(new SpixerLikedDomainEvent(this.Id, like.UserId));
 
     }
 
-    public void RemoveLike(Guid userId)
+    public void Unlike(SpixerLike like)
     {
-        if (LikedByUsers.Contains(userId))
-        {
-            LikedByUsers.Remove(userId);
-        }
+        SpixerLikes.Remove(like);
+       LikesCount--;
     }
 
 
@@ -40,6 +38,7 @@ public class Spixer : Entity, IAggregateRoot
         SetContent(content);
         UserId = userId;
         Active = true;
+        CreatedAt = DateTime.UtcNow;    
     }
 
     public void DeleteSpixer()
@@ -59,3 +58,5 @@ public class Spixer : Entity, IAggregateRoot
     }
 
 }
+
+

@@ -1,5 +1,6 @@
 ﻿
 using Spix.Domain.Core;
+using Spix.Domain.Users.Rules;
 
 namespace Spix.Domain.Spixers.Rules;
 
@@ -19,7 +20,7 @@ public class ContentMustNotBeEmptyRule : IBusinessRule
 
 public class ContentMustNotExceedMaxLengthRule : IBusinessRule
 {
-    private const int MaxLength = 280;
+    private const int MaxLength = SpixerConstants.MaxContentLength;
     private readonly string _content;
 
     public ContentMustNotExceedMaxLengthRule(string content)

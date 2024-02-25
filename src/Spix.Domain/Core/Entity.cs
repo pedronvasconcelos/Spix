@@ -6,7 +6,7 @@ public abstract class Entity
 
     public List<DomainEvent> _domainEvents = new List<DomainEvent>();
 
-
+    
     protected void AddDomainEvent(DomainEvent domainEvent)
     {
         _domainEvents = _domainEvents ?? new List<DomainEvent>();

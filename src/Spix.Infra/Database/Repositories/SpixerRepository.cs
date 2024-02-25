@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Spix.Domain.Core;
+using Spix.Domain.Likes;
 using Spix.Domain.Spixers;
 using Spix.Infra.Database.Context;
 
@@ -9,11 +10,13 @@ public class SpixerRepository : ISpixerRepository
 {
     private readonly SpixDbContext spixDbContext;
     private readonly DbSet<Spixer> Spixers;
+    private readonly DbSet<SpixerLike> SpixerLikes; 
 
     public SpixerRepository(SpixDbContext spixDbContext)
     {
         this.spixDbContext = spixDbContext;
         this.Spixers = spixDbContext.Spixers;
+        this.SpixerLikes = spixDbContext.SpixerLikes;
     }
     public IUnitOfWork UnitOfWork => spixDbContext;
 
@@ -44,4 +47,14 @@ public class SpixerRepository : ISpixerRepository
         Task.Run(() => Spixers.Update(entity));
         return Task.CompletedTask;
     }
+
+    public async Task<bool> IsSpixerLikedByUserAsync(Guid spixerId, Guid userId)
+    {
+        return await Spixers.AnyAsync(x => x.Id == spixerId && x.SpixerLikes.Any(x => x.UserId == userId));
+    }
+    public async Task AddSpixerLikeAsync(SpixerLike spixerLike)
+    {
+        await SpixerLikes.AddAsync(spixerLike);
+    }
+
 }

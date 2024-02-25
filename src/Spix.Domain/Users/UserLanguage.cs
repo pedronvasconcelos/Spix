@@ -1,7 +1,6 @@
 ﻿namespace Spix.Domain.Users;
 
-public class UserLanguage
+public enum UserLanguage
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
+   Portuguese = 1
 }
