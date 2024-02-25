@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Spix.Application.Spixers.Create;
 using Spix.Application.Spixers.Like;
+using Spix.Application.Spixers.Unlike;
 
 namespace Spix.Api.Controllers
 {
@@ -31,6 +32,14 @@ namespace Spix.Api.Controllers
         {
             var response = await _mediator.Send(command);
             return Ok(response);
-        }   
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> UnlikeSpixer([FromBody] UnlikeASpixerCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
     }
 }

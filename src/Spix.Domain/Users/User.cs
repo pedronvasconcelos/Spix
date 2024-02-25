@@ -15,8 +15,8 @@ public class User : Entity, IAggregateRoot
 
     public List<Spixer> Spixers { get; private set; } = new();
     public List<SpixerLike> SpixerLikes { get; private set; } = new();
-    public  List<Guid> Followers { get; private set; } = new();
-    public List<Guid> Following { get; private set; } = new();
+    public ICollection<UserFollower> Following { get; private set; }
+    public ICollection<UserFollower> Followers { get; private set; }
 
 
 
@@ -34,13 +34,14 @@ public class User : Entity, IAggregateRoot
 
     public bool IsConfirmed() => EmailIsVerified && IsActive;
     public bool IsComplete() => Attributes is not null;
-    //construtor 
     public User(string userName, Email email)
     {
         UserName = userName;
         Email = email;
         EmailIsVerified = false;
         IsActive = true;
+        Location = "Unknown";
+        WebSite = "Unknown";    
     }
 
     public User()
@@ -49,4 +50,14 @@ public class User : Entity, IAggregateRoot
     }
 
 
+}
+
+
+public class UserFollower
+{
+    public Guid UserId { get; set; }
+    public User User { get; set; }
+
+    public Guid FollowerId { get; set; }
+    public User Follower { get; set; }
 }

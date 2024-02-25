@@ -57,4 +57,13 @@ public class SpixerRepository : ISpixerRepository
         await SpixerLikes.AddAsync(spixerLike);
     }
 
+    public async Task<SpixerLike?> GetSpixerLikeAsync(Guid spixerId, Guid userId)
+    {
+        return await SpixerLikes.FirstOrDefaultAsync(x => x.SpixerId == spixerId && x.UserId == userId);
+    }   
+    public async Task DeleteSpixerLikeAsync(SpixerLike spixerLike)
+    {
+        await Task.Run(() => SpixerLikes.Remove(spixerLike));
+    }       
+
 }
