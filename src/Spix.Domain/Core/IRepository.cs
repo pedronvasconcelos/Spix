@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Spix.Domain.Core;
 
-public interface IRepository<T> : IDisposable where T : Entity
+public interface IRepository<T> : IDisposable where T : IAggregateRoot
 {
     Task<T?> GetByIdAsync(Guid id);
     Task<T> AddAsync(T entity);

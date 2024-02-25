@@ -1,7 +1,8 @@
-﻿namespace Spix.Domain.Users;
+﻿using Spix.Domain.Core;
 
-public interface IUserRepository
+namespace Spix.Domain.Users;
+
+public interface IUserRepository : IRepository<User>    
 {
-    public Task<User> AddAsync(User user);
-    public Task<User> GetAsync(Guid id);
+     
 }

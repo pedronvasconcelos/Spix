@@ -7,6 +7,6 @@ public class DomainEvent
 
     public DomainEvent()
     {
-        OccurredOn = DateTime.Now;
+        OccurredOn = DateTime.UtcNow;
     }
 }

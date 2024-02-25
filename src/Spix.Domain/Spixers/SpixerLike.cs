@@ -10,13 +10,13 @@ public class SpixerLike : Entity
     public virtual Spixer Spixer { get; private set; } = null!;
     public Guid UserId { get; private set; }
     public virtual User User { get; private set; } = null!;
-    public DateTime CreatedAt { get; private set; } = DateTime.Now;
+    public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
 
     public SpixerLike(Guid spixerId, Guid userId)
     {
         SpixerId = spixerId;
         UserId = userId;
-        CreatedAt = DateTime.Now;
+        CreatedAt = DateTime.UtcNow;
     }
 
     private SpixerLike()

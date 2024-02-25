@@ -18,16 +18,16 @@ public class CreateSpixerCommandHandler : ICommandHandlerBase<CreateSpixerComman
     public async Task<ResultBase<CreateSpixerResponse>> Handle(CreateSpixerCommand request, CancellationToken cancellationToken)
     {
 
-       /* var user = await _userRepository.GetAsync(request.UserId);
+        var user = await _userRepository.GetByIdAsync(request.UserId);
         if (user == null)
         {
             return ResultBaseFactory.Failure<CreateSpixerResponse>("User not found");
         }
-       */
-        var spixer = new Spixer(request.Content, request.UserId);
+       
+        var spixer = new Spixer(request.Content, user.Id);
         var addedSpixer = await _spixerRepository.AddAsync(spixer);
        
-        if (await _spixerRepository.UnitOfWork.CommitAsync(cancellationToken))
+        if (!await _spixerRepository.UnitOfWork.CommitAsync(cancellationToken))
         {
             return ResultBaseFactory.Failure<CreateSpixerResponse>("Error adding spixer");
         }   
