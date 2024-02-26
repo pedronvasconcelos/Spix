@@ -13,13 +13,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spix.UnitTests", "Spix.Unit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spix.Application", "src\Spix.Application\Spix.Application.csproj", "{D2223E87-C57F-4D79-86D0-3E24B683D574}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spix.Infra", "src\Spix.Infra\Spix.Infra.csproj", "{237BC107-D6C8-4AE9-A86B-46A29AA100B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spix.Infra", "src\Spix.Infra\Spix.Infra.csproj", "{237BC107-D6C8-4AE9-A86B-46A29AA100B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spix.Api", "src\Spix.Api\Spix.Api.csproj", "{4A950028-5995-4DF7-8949-9CC6DC7278D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spix.Api", "src\Spix.Api\Spix.Api.csproj", "{4A950028-5995-4DF7-8949-9CC6DC7278D7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sql", "sql", "{5A6EDF2F-C166-4D24-9103-566E9EC58866}"
 	ProjectSection(SolutionItems) = preProject
 		sql\create_db.sql = sql\create_db.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker-compose", "docker-compose", "{1988412D-7BAC-4313-BA95-276A52159C46}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
 Global

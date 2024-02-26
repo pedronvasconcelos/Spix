@@ -1,0 +1,73 @@
+version: '3.4'
+
+services:
+  webapp:
+    container_name: spixapi
+    build:
+      context: .
+      dockerfile: src/Spix.Api/Dockerfile
+    ports:
+      - "9800:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - app_postgres
+    networks:
+      - spix_network
+  app_postgres:
+    container_name: app_postgres
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=spixDB
+      - POSTGRES_USER=app_user
+      - POSTGRES_PASSWORD=app_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - app_postgres_data:/var/lib/postgresql/data
+    networks:
+      - spix_network
+
+  keycloak-db:
+    image: postgres:latest
+    container_name: keycloak-db
+    user: root  
+    volumes:
+      - keycloak-db:/var/lib/postgresql/data
+    networks:
+      - spix_network
+    ports:
+      - "25432:5432"
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+
+  keycloak:
+    image: jboss/keycloak:latest
+    container_name: keycloak
+    depends_on:
+      - keycloak-db
+    networks:
+      - spix_network
+    ports:
+      - "8403:8080"  
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: keycloak-db
+      DB_PORT: 5432
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+
+volumes:
+  keycloak-db:
+  app_postgres_data:
+
+networks:
+  spix_network:
+    driver: bridge
