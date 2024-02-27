@@ -12,11 +12,13 @@ namespace Spix.Api
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.ConfigureDbContext(builder.Configuration); 
             builder.Services.AddRepositories();
+            builder.Services.AddServices();
             builder.Services.AddMediatR(cfg =>
             {
                 cfg.RegisterServicesFromAssemblies(typeof(CreateSpixerCommand).Assembly);
             });
 
+            builder.Services.BindAppSettings(builder.Configuration);        
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

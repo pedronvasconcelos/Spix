@@ -4,9 +4,9 @@ using Spix.Domain.Users;
 
 namespace Spix.Infra.Database.Mapping;
 
-public class UserMapping : IEntityTypeConfiguration<User>
+public class UserMapping : IEntityTypeConfiguration<UserSpix>
 {
-    public void Configure(EntityTypeBuilder<User> builder)
+    public void Configure(EntityTypeBuilder<UserSpix> builder)
     {
         builder.ToTable("users");
 

@@ -4,7 +4,7 @@ using Spix.Domain.Spixers;
 
 namespace Spix.Domain.Users;
 
-public class User : Entity, IAggregateRoot
+public class UserSpix : Entity, IAggregateRoot
 {
 
     public string UserName { get; private set; }
@@ -34,7 +34,7 @@ public class User : Entity, IAggregateRoot
 
     public bool IsConfirmed() => EmailIsVerified && IsActive;
     public bool IsComplete() => Attributes is not null;
-    public User(string userName, Email email)
+    public UserSpix(string userName, Email email)
     {
         UserName = userName;
         Email = email;
@@ -44,7 +44,7 @@ public class User : Entity, IAggregateRoot
         WebSite = "Unknown";    
     }
 
-    public User()
+    public UserSpix()
     {
 
     }
@@ -56,8 +56,8 @@ public class User : Entity, IAggregateRoot
 public class UserFollower
 {
     public Guid UserId { get; set; }
-    public User User { get; set; }
+    public UserSpix User { get; set; }
 
     public Guid FollowerId { get; set; }
-    public User Follower { get; set; }
+    public UserSpix Follower { get; set; }
 }

@@ -2,7 +2,7 @@
 
 namespace Spix.Domain.Users;
 
-public interface IUserRepository : IRepository<User>    
+public interface IUserRepository : IRepository<UserSpix>    
 {
      
 }

@@ -23,7 +23,7 @@ public class SpixDbContext : DbContext, IUnitOfWork
 
 
     public DbSet<Spixer> Spixers { get; init; }
-    public DbSet<User> Users { get; init; } 
+    public DbSet<UserSpix> Users { get; init; } 
     public DbSet<SpixerLike> SpixerLikes { get; init; }
 
     public  async Task<bool> CommitAsync(CancellationToken cancellationToken = default)
