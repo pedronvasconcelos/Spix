@@ -1,5 +1,4 @@
-﻿
-using Spix.Application.Users.Models;
+﻿using Spix.Application.Users.RegisterUser;
 
 namespace Spix.Infra.Keycloak;
 

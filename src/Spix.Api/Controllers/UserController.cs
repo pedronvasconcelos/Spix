@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Spix.Application.Interfaces;
-using Spix.Application.Users.Models;
+using Spix.Application.Users.RegisterUser;
 
 namespace Spix.Api.Controllers
 {

@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using Spix.Domain.Core;
-using Spix.Domain.Likes;
-using Spix.Domain.Spixers;
+using Spix.Domain.Entities;
 
 namespace Spix.UnitTests.Domain.Spixers;
 

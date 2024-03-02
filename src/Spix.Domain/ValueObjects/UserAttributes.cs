@@ -1,9 +1,10 @@
 ﻿using Spix.Domain.Core;
-using Spix.Domain.Users.Rules;
+using Spix.Domain.Rules;
+using Spix.Domain.Rules.Users;
 
-namespace Spix.Domain.Users;
+namespace Spix.Domain.ValueObjects;
 
-public class UserAttributes : ValueObjects
+public class UserAttributes : ValueObject
 {
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
@@ -31,12 +32,12 @@ public class UserAttributes : ValueObjects
 
     public void SetFirstName(string firstName)
     {
-        
+
         FirstName = firstName;
     }
     public void SetLastName(string lastName)
     {
-         
+
         LastName = lastName;
     }
 

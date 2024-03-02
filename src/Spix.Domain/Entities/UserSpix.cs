@@ -1,13 +1,12 @@
 ﻿using Spix.Domain.Core;
-using Spix.Domain.Likes;
-using Spix.Domain.Spixers;
+using Spix.Domain.ValueObjects;
 
-namespace Spix.Domain.Users;
+namespace Spix.Domain.Entities;
 
 public class UserSpix : Entity, IAggregateRoot
 {
 
-    public string UserName { get; private set; }
+    public Username UserName { get; private set; }
     public UserAttributes? Attributes { get; private set; }
 
     public Email Email { get; private set; }
@@ -41,7 +40,7 @@ public class UserSpix : Entity, IAggregateRoot
         EmailIsVerified = false;
         IsActive = true;
         Location = "Unknown";
-        WebSite = "Unknown";    
+        WebSite = "Unknown";
     }
 
     public UserSpix()
@@ -60,4 +59,11 @@ public class UserFollower
 
     public Guid FollowerId { get; set; }
     public UserSpix Follower { get; set; }
+
+    public UserFollower(Guid userId, Guid followerId)
+    {
+        UserId = userId;
+        FollowerId = followerId;
+    }
+
 }

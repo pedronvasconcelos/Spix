@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Spix.Application.Core;
 using Spix.Application.Interfaces;
-using Spix.Application.Users.Models;
+using Spix.Application.Users.RegisterUser;
 using Spix.Domain.Users;
 using System.Net.Http.Headers;
 using System.Text;

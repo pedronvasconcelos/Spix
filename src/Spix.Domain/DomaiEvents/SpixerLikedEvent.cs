@@ -1,7 +1,6 @@
 ﻿using Spix.Domain.Core;
- 
 
-namespace Spix.Domain.Spixers;
+namespace Spix.Domain.DomaiEvents;
 
 public class SpixerLikedDomainEvent : DomainEvent
 {

@@ -1,8 +1,6 @@
 ﻿using Spix.Domain.Core;
-using Spix.Domain.Spixers;
-using Spix.Domain.Users;
 
-namespace Spix.Domain.Likes;
+namespace Spix.Domain.Entities;
 
 public class SpixerLike : Entity
 {

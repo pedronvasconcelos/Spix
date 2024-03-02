@@ -1,12 +1,9 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-
-using Spix.Domain.Spixers;
 using Spix.Infra.Extensions;
- 
+
 using Spix.Domain.Core;
-using Spix.Domain.Users;
-using Spix.Domain.Likes;
+using Spix.Domain.Entities;
 
 namespace Spix.Infra.Database.Context;
 

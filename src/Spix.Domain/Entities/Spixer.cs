@@ -1,9 +1,8 @@
 ﻿using Spix.Domain.Core;
-using Spix.Domain.Likes;
-using Spix.Domain.Spixers.Rules;
-using Spix.Domain.Users;
+using Spix.Domain.DomaiEvents;
+using Spix.Domain.Rules;
 
-namespace Spix.Domain.Spixers;
+namespace Spix.Domain.Entities;
 
 public class Spixer : Entity, IAggregateRoot
 {

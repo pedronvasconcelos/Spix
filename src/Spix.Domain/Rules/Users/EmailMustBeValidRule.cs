@@ -1,9 +1,7 @@
-﻿
-
-using Spix.Domain.Core;
+﻿using Spix.Domain.Core;
 using System.Text.RegularExpressions;
 
-namespace Spix.Domain.Users.Rules;
+namespace Spix.Domain.Rules.Users;
 
 public class EmailMustBeValidRule : IBusinessRule
 {
