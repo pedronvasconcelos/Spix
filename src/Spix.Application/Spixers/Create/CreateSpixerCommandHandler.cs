@@ -1,4 +1,5 @@
 ﻿using Spix.Application.Core;
+using Spix.Domain.Entities;
 using Spix.Domain.Repositories;
 
 namespace Spix.Application.Spixers.Create;
