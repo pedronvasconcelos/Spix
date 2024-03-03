@@ -48,7 +48,7 @@ This project leverages technologies and practices designed to ensure efficiency,
 
 Este projeto apresenta uma API inspirada na dinâmica e estrutura do Twitter, desenvolvida com o propósito de servir como um campo de estudo e experimentação.
 
-###Termos:
+### Glossário:
 **Spixer**: É o mesmo que uma publicação. O nosso "tweet".
 
 ### Origem do Nome
