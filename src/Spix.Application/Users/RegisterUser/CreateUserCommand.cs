@@ -1,5 +1,4 @@
 ﻿using Spix.Application.Core;
-using Spix.Application.Interfaces;
 
 namespace Spix.Application.Users.RegisterUser;
 
@@ -20,23 +19,5 @@ public class CreateUserCommand : ICommandBase<CreateUserResponse>
         Password = password;
     }
 
-}
-
-
-//handler 
-public class CreateUserHandler : ICommandHandlerBase<CreateUserCommand, CreateUserResponse>
-{
-    private readonly IUserService _userService;
-
-    public CreateUserHandler(IUserService userService)
-    {
-        _userService = userService;
-    }
-
-    public async Task<ResultBase<CreateUserResponse>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
-    {
-        await _userService.CreateUserAsync(request);
-        return ResultBaseFactory.Successful(new CreateUserResponse(Guid.NewGuid(), "", "", DateTime.Now)); ;
-    }
 }
  

@@ -9,7 +9,7 @@ public class SpixerMapping : IEntityTypeConfiguration<Spixer>
     public void Configure(EntityTypeBuilder<Spixer> builder)
     {
         builder.ToTable("spixers");
-
+        builder.HasQueryFilter(x => x.Active);  
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Id)

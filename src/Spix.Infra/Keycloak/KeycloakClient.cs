@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using Spix.Application.Core;
 using Spix.Application.Interfaces;
 using Spix.Application.Users.RegisterUser;
-using Spix.Domain.Users;
+ 
 using System.Net.Http.Headers;
 using System.Text;
 
@@ -42,7 +42,7 @@ public class KeycloakClient : IUserService
         return tokenResponse["access_token"];
     }
 
-    public async Task CreateUserAsync(CreateUserCommand command)
+    public async Task<bool> CreateUserAsync(CreateUserCommand command)
     {
         using var _httpClient = new HttpClient();
         var accessToken = await GetAdminAccessToken();
@@ -53,6 +53,7 @@ public class KeycloakClient : IUserService
 
         var response = await _httpClient.PostAsync(_keycloakConfig.Authority + $"/admin/realms/{_keycloakConfig.Realm}/users", content);    
         response.EnsureSuccessStatusCode();
+        return true;
     }
 
 

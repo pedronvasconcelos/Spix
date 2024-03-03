@@ -1,7 +1,7 @@
 ﻿using Spix.Domain.Constants;
 using Spix.Domain.Core;
 
-namespace Spix.Domain.Rules;
+namespace Spix.Domain.Rules.Spixers;
 
 public class ContentMustNotBeEmptyRule : IBusinessRule
 {

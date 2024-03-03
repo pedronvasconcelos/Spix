@@ -4,5 +4,5 @@ namespace Spix.Application.Interfaces;
 
 public interface IUserService
 {
-    Task CreateUserAsync(CreateUserCommand command);    
+    Task<bool> CreateUserAsync(CreateUserCommand command);    
 }

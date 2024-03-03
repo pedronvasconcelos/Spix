@@ -4,17 +4,18 @@ using Spix.Infra.Extensions;
 
 using Spix.Domain.Core;
 using Spix.Domain.Entities;
+using Spix.Application.Interfaces;
 
 namespace Spix.Infra.Database.Context;
 
 public class SpixDbContext : DbContext, IUnitOfWork
 {
   
-    private readonly IMediator _mediator;
-    public SpixDbContext(DbContextOptions<SpixDbContext> options, IMediator mediator)
+    private readonly IEventBus _eventBus;
+    public SpixDbContext(DbContextOptions<SpixDbContext> options, IEventBus eventBus)
         : base(options)
     {
-        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
     }
 
 
@@ -27,7 +28,7 @@ public class SpixDbContext : DbContext, IUnitOfWork
     {
         var result = await base.SaveChangesAsync(cancellationToken) > 0;
 
-        await this._mediator.DispatchDomainEventsAsync(this, cancellationToken);
+        await this._eventBus.DispatchDomainEventsAsync(this, cancellationToken);
         return result;
     }
 

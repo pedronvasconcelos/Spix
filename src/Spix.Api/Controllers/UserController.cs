@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Spix.Application.Interfaces;
 using Spix.Application.Users.RegisterUser;
@@ -9,18 +10,29 @@ namespace Spix.Api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IMediator _mediator;   
 
-        public UserController(IUserService userService)
+        public UserController(IMediator mediator)
         {
-            _userService = userService;
+             _mediator = mediator;
         }
 
         [HttpPost]
+        [Route(template: "[action]")]
         public async Task<IActionResult> CreateUserAsync([FromBody] CreateUserCommand command)
         {
-            await _userService.CreateUserAsync(command);
-            return Ok();
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var response =  await _mediator.Send(command);
+            if (!response.Success)
+            {
+                return BadRequest(response);
+            }
+            return Ok(response);
         }
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Spix.Domain.Core;
 using Spix.Domain.DomaiEvents;
-using Spix.Domain.Rules;
+using Spix.Domain.Rules.Spixers;
 
 namespace Spix.Domain.Entities;
 

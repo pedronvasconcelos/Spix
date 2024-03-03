@@ -3,17 +3,19 @@ using Spix.Domain.Core;
 
 namespace Spix.Application.Core;
 
-public interface IDomainEventNotification<T> : INotification where T : DomainEvent
+public interface IDomainEventNotification  : INotification 
 {
-    T DomainEvent { get; }
+    DomainEvent DomainEvent { get; }
+    public Guid Id { get; }
 }
 
-public class DomainEventNotification<T> : IDomainEventNotification<T> where T : DomainEvent
+public class DomainEventNotification : IDomainEventNotification 
 {
-    public T DomainEvent { get; }
-
-    public DomainEventNotification(T domainEvent)
+    public DomainEvent DomainEvent { get; }
+    public Guid Id { get; } = Guid.NewGuid();
+    public DomainEventNotification(DomainEvent domainEvent)
     {
         DomainEvent = domainEvent;
+        Id = Guid.NewGuid();      
     }
 }
