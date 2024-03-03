@@ -1,6 +1,6 @@
 ﻿namespace Spix.Domain.Core;
 
-public class ValueObjects
+public class ValueObject
 {
     protected static void CheckRule(IBusinessRule rule)
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Spix.Domain.Spixers;
-using Spix.Domain.Users.Rules;
+using Spix.Domain.Constants;
+using Spix.Domain.Entities;
 namespace Spix.Infra.Database.Mapping;
 
 public class SpixerMapping : IEntityTypeConfiguration<Spixer>
@@ -9,7 +9,7 @@ public class SpixerMapping : IEntityTypeConfiguration<Spixer>
     public void Configure(EntityTypeBuilder<Spixer> builder)
     {
         builder.ToTable("spixers");
-
+        builder.HasQueryFilter(x => x.Active);  
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Id)

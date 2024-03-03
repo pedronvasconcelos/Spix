@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Spix.Domain.Likes;
+using Spix.Domain.Entities;
 
 namespace Spix.Infra.Database.Mapping;
 public class SpixerLikeMapping : IEntityTypeConfiguration<SpixerLike>

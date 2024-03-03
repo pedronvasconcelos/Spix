@@ -1,6 +1,6 @@
 ﻿using Spix.Application.Core;
-using Spix.Domain.Spixers;
-using Spix.Domain.Users;
+using Spix.Domain.Entities;
+using Spix.Domain.Repositories;
 
 namespace Spix.Application.Spixers.Create;
 

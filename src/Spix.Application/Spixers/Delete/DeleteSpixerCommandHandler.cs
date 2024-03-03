@@ -1,5 +1,5 @@
 ﻿using Spix.Application.Core;
-using Spix.Domain.Spixers;
+using Spix.Domain.Repositories;
 
 namespace Spix.Application.Spixers.Delete;
 

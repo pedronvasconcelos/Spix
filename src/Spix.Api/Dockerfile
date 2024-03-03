@@ -9,7 +9,14 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY ["src/Spix.Api/Spix.Api.csproj", "src/Spix.Api/"]
+COPY ["src/Spix.Application/Spix.Application.csproj", "src/Spix.Application/"]
+COPY ["src/Spix.Domain/Spix.Domain.csproj", "src/Spix.Domain/"]
+COPY ["src/Spix.Infra/Spix.Infra.csproj", "src/Spix.Infra/"]
+
 RUN dotnet restore "src/Spix.Api/Spix.Api.csproj"
+ 
+
+ 
 COPY . .
 WORKDIR "/src/src/Spix.Api"
 RUN dotnet build "Spix.Api.csproj" -c Release -o /app/build

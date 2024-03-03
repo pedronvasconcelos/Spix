@@ -1,5 +1,4 @@
-﻿using Spix.Domain.Spixers;
-using Spix.Domain.Users;
+﻿using Spix.Domain.Repositories;
 using Spix.Infra.Database.Repositories;
 
 namespace Spix.Api.Configuration;

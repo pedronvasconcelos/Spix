@@ -1,6 +1,6 @@
 ﻿using Spix.Domain.Core;
 
-namespace Spix.Domain.Users.Rules;
+namespace Spix.Domain.Rules.Users;
 
 public class BirthdateCannotBeInFutureRule : IBusinessRule
 {
@@ -12,5 +12,5 @@ public class BirthdateCannotBeInFutureRule : IBusinessRule
     public string Message => "Birthdate cannot be in future";
 
     public bool IsBroken()
-     => _birthdate.Date > DateTime.UtcNow.Date;      
+     => _birthdate.Date > DateTime.UtcNow.Date;
 }

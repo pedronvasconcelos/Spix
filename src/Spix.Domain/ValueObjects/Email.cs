@@ -1,10 +1,11 @@
 ﻿using Spix.Domain.Core;
-using Spix.Domain.Users.Rules;
+using Spix.Domain.Rules;
+using Spix.Domain.Rules.Users;
 using System.Text.RegularExpressions;
 
-namespace Spix.Domain.Users;
+namespace Spix.Domain.ValueObjects;
 
-public class Email : ValueObjects
+public class Email : ValueObject
 {
     public string Value { get; private set; }
 

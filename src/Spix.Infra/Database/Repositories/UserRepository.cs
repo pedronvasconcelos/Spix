@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Spix.Domain.Core;
-using Spix.Domain.Users;
+using Spix.Domain.Entities;
+using Spix.Domain.Repositories;
 using Spix.Infra.Database.Context;
 
 namespace Spix.Infra.Database.Repositories;
@@ -8,7 +9,7 @@ namespace Spix.Infra.Database.Repositories;
 public class UserRepository : IUserRepository
 {
     private readonly SpixDbContext spixDbContext;
-    private readonly DbSet<User> Users;
+    private readonly DbSet<UserSpix> Users;
 
     public UserRepository(SpixDbContext spixDbContext)
     {
@@ -17,13 +18,13 @@ public class UserRepository : IUserRepository
     }   
     public IUnitOfWork UnitOfWork => spixDbContext;
 
-    public Task<User> AddAsync(User user)
+    public Task<UserSpix> AddAsync(UserSpix user)
     {
         Users.Add(user);
-        return Task.FromResult<User> (user);       
+        return Task.FromResult<UserSpix> (user);       
     }
 
-    public Task DeleteAsync(User entity)
+    public Task DeleteAsync(UserSpix entity)
     {
         Users.Remove(entity);   
         return Task.CompletedTask;
@@ -36,12 +37,12 @@ public class UserRepository : IUserRepository
 
    
 
-    public async Task<User?> GetByIdAsync(Guid id)
+    public async Task<UserSpix?> GetByIdAsync(Guid id)
     {
         return await Users.FirstOrDefaultAsync(x => x.Id == id);    
     }
 
-    public Task UpdateAsync(User entity)
+    public Task UpdateAsync(UserSpix entity)
     {
         return Task.Run(() => Users.Update(entity));    
     }

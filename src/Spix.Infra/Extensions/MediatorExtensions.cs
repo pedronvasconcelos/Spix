@@ -1,14 +1,15 @@
 ﻿using MediatR;
 using Spix.Application.Core;
+using Spix.Application.Interfaces;
 using Spix.Domain.Core;
 using Spix.Infra.Database.Context;
 
 namespace Spix.Infra.Extensions;
 
 
-public static class MediatorExtension
+public static class EventBusExtensions
 {
-    public static async Task DispatchDomainEventsAsync(this IMediator mediator, SpixDbContext ctx, CancellationToken cancellationToken)
+    public static async Task DispatchDomainEventsAsync(this IEventBus eventBus, SpixDbContext ctx, CancellationToken cancellationToken)
     {
         var domainEntities = ctx.ChangeTracker
             .Entries<Entity>()
@@ -24,8 +25,8 @@ public static class MediatorExtension
         var tasks = domainEvents
             .Select(async (domainEvent) =>
             {
-                var notification = new DomainEventNotification<DomainEvent>(domainEvent);
-                await mediator.Publish(notification, cancellationToken);
+                var notification = new DomainEventNotification(domainEvent);
+                await eventBus.PublishAsync(notification, cancellationToken);
             });
 
         await Task.WhenAll(tasks);

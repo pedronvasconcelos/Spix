@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Spix.Domain.Core;
-using Spix.Domain.Spixers;
+using Spix.Domain.Entities;
 
 namespace Spix.UnitTests.Domain.Spixers;
 
@@ -64,7 +64,7 @@ public class SpixerTests
         var spixer = new Spixer(content, userId);
 
         // Assert
-        spixer.LikedByUsers.Should().BeEmpty();
+        spixer.SpixerLikes.Should().BeEmpty();  
     }
 
     [Fact]
@@ -79,9 +79,10 @@ public class SpixerTests
         var userId = Guid.NewGuid();
         var spixer = new Spixer(content, userId);
         var likerId = Guid.NewGuid();
-
+        
+        var like = new SpixerLike(likerId, spixer.Id); 
         // Act
-        spixer.AddLike(likerId);
+        spixer.Like(like);
 
         // Assert
         spixer.LikesCount.Should().Be(1);
@@ -100,10 +101,12 @@ public class SpixerTests
         var userId = Guid.NewGuid();
         var spixer = new Spixer(content, userId);
         var likerId = Guid.NewGuid();
-        spixer.AddLike(likerId);
+        var like = new SpixerLike(likerId, spixer.Id);
+
+        spixer.Like(like);
 
         // Act
-        spixer.RemoveLike(likerId);
+        spixer.Unlike(like);
 
         // Assert
         spixer.LikesCount.Should().Be(0);

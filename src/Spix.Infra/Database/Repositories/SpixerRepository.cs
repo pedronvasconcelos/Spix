@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Spix.Domain.Core;
-using Spix.Domain.Likes;
-using Spix.Domain.Spixers;
+using Spix.Domain.Entities;
+using Spix.Domain.Repositories;
 using Spix.Infra.Database.Context;
 
 namespace Spix.Infra.Database.Repositories;

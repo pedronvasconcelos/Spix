@@ -1,16 +1,15 @@
 ﻿using Spix.Domain.Core;
-using Spix.Domain.Likes;
-using Spix.Domain.Spixers.Rules;
-using Spix.Domain.Users;
+using Spix.Domain.DomaiEvents;
+using Spix.Domain.Rules.Spixers;
 
-namespace Spix.Domain.Spixers;
+namespace Spix.Domain.Entities;
 
 public class Spixer : Entity, IAggregateRoot
 {
     public string Content { get; private set; } = null!;
     public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
     public Guid UserId { get; private set; }
-    public virtual User User { get; private set; } = null!;
+    public virtual UserSpix User { get; private set; } = null!;
 
     public virtual List<SpixerLike> SpixerLikes { get; private set; } = new();     
     public int LikesCount { get; private set; }

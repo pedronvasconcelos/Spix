@@ -20,7 +20,7 @@ namespace Spix.Api.Controllers
         }
 
         [HttpPost]
-        [Route("[action]")]  
+        [Route(template: "[action]")]  
         public async Task<IActionResult> CreateSpixer([FromBody] CreateSpixerCommand command)
         {
             if(!ModelState.IsValid)

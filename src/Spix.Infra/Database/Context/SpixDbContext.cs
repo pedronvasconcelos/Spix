@@ -1,36 +1,34 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-
-using Spix.Domain.Spixers;
 using Spix.Infra.Extensions;
- 
+
 using Spix.Domain.Core;
-using Spix.Domain.Users;
-using Spix.Domain.Likes;
+using Spix.Domain.Entities;
+using Spix.Application.Interfaces;
 
 namespace Spix.Infra.Database.Context;
 
 public class SpixDbContext : DbContext, IUnitOfWork
 {
   
-    private readonly IMediator _mediator;
-    public SpixDbContext(DbContextOptions<SpixDbContext> options, IMediator mediator)
+    private readonly IEventBus _eventBus;
+    public SpixDbContext(DbContextOptions<SpixDbContext> options, IEventBus eventBus)
         : base(options)
     {
-        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
     }
 
 
 
     public DbSet<Spixer> Spixers { get; init; }
-    public DbSet<User> Users { get; init; } 
+    public DbSet<UserSpix> Users { get; init; } 
     public DbSet<SpixerLike> SpixerLikes { get; init; }
 
     public  async Task<bool> CommitAsync(CancellationToken cancellationToken = default)
     {
         var result = await base.SaveChangesAsync(cancellationToken) > 0;
 
-        await this._mediator.DispatchDomainEventsAsync(this, cancellationToken);
+        await this._eventBus.DispatchDomainEventsAsync(this, cancellationToken);
         return result;
     }
 
