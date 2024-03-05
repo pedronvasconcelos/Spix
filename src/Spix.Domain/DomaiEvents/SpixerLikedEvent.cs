@@ -1,4 +1,4 @@
-﻿using Spix.Domain.Core;
+﻿using Spix.Domain.SeedOfWork;
 
 namespace Spix.Domain.DomaiEvents;
 

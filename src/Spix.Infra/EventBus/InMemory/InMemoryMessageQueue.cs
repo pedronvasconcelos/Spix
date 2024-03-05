@@ -1,5 +1,5 @@
 ﻿using Spix.Application.Core;
-using Spix.Domain.Core;
+using Spix.Domain.SeedOfWork;
 using System.Threading.Channels;
 
 namespace Spix.Infra.EventBus.InMemory;

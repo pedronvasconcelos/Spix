@@ -1,4 +1,4 @@
-﻿using Spix.Domain.Core;
+﻿using Spix.Domain.SeedOfWork;
 using System.Text.Json.Serialization;
 
 namespace Spix.Application.Core;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spix.Domain.Core;
+namespace Spix.Domain.SeedOfWork;
 
 public interface IRepository<T> : IDisposable where T : IAggregateRoot
 {

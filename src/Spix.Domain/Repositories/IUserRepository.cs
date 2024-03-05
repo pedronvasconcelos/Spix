@@ -1,4 +1,4 @@
-﻿using Spix.Domain.Core;
+﻿using Spix.Domain.SeedOfWork;
 using Spix.Domain.Entities;
 
 namespace Spix.Domain.Repositories;

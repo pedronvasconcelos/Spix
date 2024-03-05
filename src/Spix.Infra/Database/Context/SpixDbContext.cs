@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Spix.Infra.Extensions;
 
-using Spix.Domain.Core;
+using Spix.Domain.SeedOfWork;
 using Spix.Domain.Entities;
 using Spix.Application.Interfaces;
 

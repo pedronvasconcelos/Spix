@@ -1,4 +1,4 @@
-﻿namespace Spix.Domain.Core;
+﻿namespace Spix.Domain.SeedOfWork;
 
 public abstract class Entity
 {

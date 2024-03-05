@@ -1,5 +1,5 @@
 ﻿
-namespace Spix.Domain.Core;
+namespace Spix.Domain.SeedOfWork;
 
 public class DomainEvent  
 {

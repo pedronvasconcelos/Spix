@@ -1,6 +1,5 @@
 ﻿
 using Spix.Application.Core;
-using Spix.Domain.Core;
 
 namespace Spix.Application.Interfaces;
 

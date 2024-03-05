@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace Spix.Domain.Core;
+namespace Spix.Domain.SeedOfWork;
 
 public interface IAggregateRoot
 {
