@@ -1,10 +1,9 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Spix.Infra.Extensions;
-
-using Spix.Domain.SeedOfWork;
 using Spix.Domain.Entities;
 using Spix.Application.Interfaces;
+using Spix.Domain.Core.SeedOfWork;
 
 namespace Spix.Infra.Database.Context;
 

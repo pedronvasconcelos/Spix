@@ -1,6 +1,6 @@
 ﻿using Spix.Application.Core;
 using Spix.Application.Interfaces;
-using Spix.Domain.SeedOfWork;
+using Spix.Domain.Core.SeedOfWork;
 using Spix.Infra.Database.Context;
 
 namespace Spix.Infra.Extensions;

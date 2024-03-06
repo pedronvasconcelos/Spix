@@ -1,4 +1,4 @@
-﻿using Spix.Domain.SeedOfWork;
+﻿using Spix.Domain.Core.SeedOfWork;
 using System.Text.RegularExpressions;
 
 namespace Spix.Domain.Rules.Users;

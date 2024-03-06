@@ -1,6 +1,6 @@
-﻿using Spix.Domain.SeedOfWork;
+﻿using Spix.Domain.Core.SeedOfWork;
 
-namespace Spix.Domain.DomaiEvents;
+namespace Spix.Domain.Events;
 
 public class SpixerLikedDomainEvent : DomainEvent
 {

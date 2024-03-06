@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Spix.Domain.SeedOfWork;
+using Spix.Domain.Core.SeedOfWork;
 using Spix.Domain.ValueObjects;
 
 namespace Spix.UnitTests.Domain.Users;
