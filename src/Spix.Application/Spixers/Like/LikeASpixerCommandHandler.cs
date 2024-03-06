@@ -1,4 +1,6 @@
 ﻿using Spix.Application.Core;
+using Spix.Application.Core.Errors;
+using Spix.Domain.Core.Results;
 using Spix.Domain.Entities;
 using Spix.Domain.Repositories;
 
@@ -14,22 +16,22 @@ public class LikeASpixerCommandHandler : ICommandHandlerBase<LikeASpixerCommand,
         _spixerRepository = spixerRepository;
         _userRepository = userRepository;
     }
-    public async Task<ResultBase<LikeASpixerResponse>> Handle(LikeASpixerCommand request, CancellationToken cancellationToken)
+    public async Task<Result<LikeASpixerResponse>> Handle(LikeASpixerCommand request, CancellationToken cancellationToken)
     {
         
         var user = await _userRepository.GetByIdAsync(request.UserId);  
         if (user == null)
         {
-            return ResultBaseFactory.Failure<LikeASpixerResponse>("User not found");
+            return Result.Failure<LikeASpixerResponse>(ValidationErrors.User.NotFound);
         }   
         var spixer = await _spixerRepository.GetByIdAsync(request.SpixerId);
         if (spixer == null)
         {
-            return ResultBaseFactory.Failure<LikeASpixerResponse>("Spixer not found");
+            return Result.Failure<LikeASpixerResponse>(ValidationErrors.Spixer.NotFound);
         }
         if (await _spixerRepository.IsSpixerLikedByUserAsync(request.SpixerId, request.UserId))
         {
-            return ResultBaseFactory.Failure<LikeASpixerResponse>("Spixer already liked");
+            return Result.Failure<LikeASpixerResponse>(ValidationErrors.Spixer.AlreadyLiked);
         }
 
         var spixerLike = new SpixerLike(spixer.Id, user.Id);    
@@ -40,17 +42,16 @@ public class LikeASpixerCommandHandler : ICommandHandlerBase<LikeASpixerCommand,
         await _spixerRepository.AddSpixerLikeAsync(spixerLike);
         if (!await _spixerRepository.UnitOfWork.CommitAsync(cancellationToken))
         {
-            return ResultBaseFactory.Failure<LikeASpixerResponse>("Error liking spixer");
+            return Result.Failure<LikeASpixerResponse>(ValidationErrors.Database.Generic);
         }
 
 
 
-        return ResultBaseFactory.Successful(
+        return Result.Success(
             new LikeASpixerResponse(
                 spixerLike.Id, 
                 user.Id, 
                 spixer.Id,
-                spixerLike.CreatedAt),
-                "Success");          
+                spixerLike.CreatedAt));          
     }
 }

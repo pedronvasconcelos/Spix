@@ -1,5 +1,7 @@
 ﻿using Spix.Application.Core;
+using Spix.Application.Core.Errors;
 using Spix.Application.Interfaces;
+using Spix.Domain.Core.Results;
 using Spix.Domain.Entities;
 using Spix.Domain.Repositories;
 
@@ -16,21 +18,21 @@ public class CreateUserHandler : ICommandHandlerBase<CreateUserCommand, CreateUs
         _userRepository = userRepository;   
     }
 
-    public async Task<ResultBase<CreateUserResponse>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+    public async Task<Result<CreateUserResponse>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
         var result = await _userService.CreateUserAsync(request);
         if (!result)
         {
-            return ResultBaseFactory.Failure<CreateUserResponse>("Failed to create user");
+            return Result.Failure<CreateUserResponse>(ValidationErrors.User.ErrorCreatingUser);
         }
         var entity =  await _userRepository.AddAsync(new UserSpix(request.Username, request.Email));
         await _userRepository.UnitOfWork.CommitAsync(cancellationToken);   
         if (entity == null)
         {
-            return ResultBaseFactory.Failure<CreateUserResponse>("Failed to persist the user");  
+            return Result.Failure<CreateUserResponse>(ValidationErrors.Database.Generic);  
         }
 
-        return ResultBaseFactory.Successful(new CreateUserResponse(Guid.NewGuid(), entity.UserName, entity.Email, DateTime.Now), "User created successfully");
+        return Result.Success(new CreateUserResponse(Guid.NewGuid(), entity.UserName, entity.Email, DateTime.Now));
     }
 }
  

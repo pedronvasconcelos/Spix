@@ -124,7 +124,7 @@ public class SpixerTests
         var userId = Guid.NewGuid();
 
         // Act & Assert
-        ar result = Spixer.Create(invalidContent, userId);
+        var result = Spixer.Create(invalidContent, userId);
         result.IsFailure.Should().BeTrue();
     }
 

@@ -1,4 +1,6 @@
 ﻿using Spix.Application.Core;
+using Spix.Application.Core.Errors;
+using Spix.Domain.Core.Results;
 using Spix.Domain.Entities;
 using Spix.Domain.Repositories;
 
@@ -15,13 +17,13 @@ public class CreateSpixerCommandHandler : ICommandHandlerBase<CreateSpixerComman
         _userRepository = userRepository;
     }
 
-    public async Task<ResultBase<CreateSpixerResponse>> Handle(CreateSpixerCommand request, CancellationToken cancellationToken)
+    public async Task<Result<CreateSpixerResponse>> Handle(CreateSpixerCommand request, CancellationToken cancellationToken)
     {
 
         var user = await _userRepository.GetByIdAsync(request.UserId);
         if (user == null)
         {
-            return ResultBaseFactory.Failure<CreateSpixerResponse>("User not found");
+            return Result.Failure<CreateSpixerResponse>(ValidationErrors.User.NotFound);
         }
        
         var spixer = new Spixer(request.Content, user.Id);
@@ -29,8 +31,8 @@ public class CreateSpixerCommandHandler : ICommandHandlerBase<CreateSpixerComman
        
         if (!await _spixerRepository.UnitOfWork.CommitAsync(cancellationToken))
         {
-            return ResultBaseFactory.Failure<CreateSpixerResponse>("Error adding spixer");
+            return Result.Failure<CreateSpixerResponse>(ValidationErrors.Database.Generic);
         }   
-        return ResultBaseFactory.Successful(new CreateSpixerResponse(addedSpixer.Id, addedSpixer.Content), "Success");
+        return Result.Success(new CreateSpixerResponse(addedSpixer.Id, addedSpixer.Content));
     }
 }
