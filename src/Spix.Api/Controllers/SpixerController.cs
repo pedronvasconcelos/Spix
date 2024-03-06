@@ -108,7 +108,7 @@ namespace Spix.Api.Controllers
                 return BadRequest(ModelState);
             }
             var response = await _mediator.Send(query);
-            if(response is not null)
+            if(response is null)
             {
                 return BadRequest(response);
             }       
