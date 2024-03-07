@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Spix.Domain.Core;
+using Spix.Domain.Core.SeedOfWork;
 using Spix.Domain.Entities;
 using Spix.Domain.Repositories;
 using Spix.Infra.Database.Context;

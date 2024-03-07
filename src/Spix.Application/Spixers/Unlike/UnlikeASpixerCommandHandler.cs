@@ -1,5 +1,7 @@
 ﻿
 using Spix.Application.Core;
+using Spix.Application.Core.Errors;
+using Spix.Domain.Core.Results;
 using Spix.Domain.Repositories;
 
 namespace Spix.Application.Spixers.Unlike;
@@ -14,24 +16,24 @@ public class UnlikeASpixerCommandHandler : ICommandHandlerBase<UnlikeASpixerComm
         _spixerRepository = spixerRepository;
         _userRepository = userRepository;
     }
-    public async Task<ResultBase<UnlikeASpixerResponse>> Handle(UnlikeASpixerCommand request, CancellationToken cancellationToken)
+    public async Task<Result<UnlikeASpixerResponse>> Handle(UnlikeASpixerCommand request, CancellationToken cancellationToken)
     {
 
         var user = await _userRepository.GetByIdAsync(request.UserId);
         if (user == null)
         {
-            return ResultBaseFactory.Failure<UnlikeASpixerResponse>("User not found");
+            return Result.Failure<UnlikeASpixerResponse>(ValidationErrors.User.NotFound);
         }
         var spixer = await _spixerRepository.GetByIdAsync(request.SpixerId);
         if (spixer == null)
         {
-            return ResultBaseFactory.Failure<UnlikeASpixerResponse>("Spixer not found");
+            return Result.Failure<UnlikeASpixerResponse>(ValidationErrors.Spixer.NotFound);
         }
 
         var like = await _spixerRepository.GetSpixerLikeAsync(request.SpixerId, request.UserId);    
         if(like == null)
         {
-            return ResultBaseFactory.Failure<UnlikeASpixerResponse>("Spixer not liked");
+            return Result.Failure<UnlikeASpixerResponse>(ValidationErrors.Spixer.NotLiked);
         }
 
         spixer.Unlike(like);
@@ -41,12 +43,12 @@ public class UnlikeASpixerCommandHandler : ICommandHandlerBase<UnlikeASpixerComm
         await _spixerRepository.UpdateAsync(spixer);
         if (!await _spixerRepository.UnitOfWork.CommitAsync(cancellationToken))
         {
-            return ResultBaseFactory.Failure<UnlikeASpixerResponse>("Error liking spixer");
+            return Result.Failure<UnlikeASpixerResponse>(ValidationErrors.Database.Generic);
         }
 
 
 
-        return ResultBaseFactory.Successful(
+        return Result.Success(
             new UnlikeASpixerResponse(spixer.Id, request.UserId));
     }
 }

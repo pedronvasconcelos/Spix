@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Spix.Domain.Core;
+using Spix.Domain.Core.SeedOfWork;
 
 namespace Spix.Application.Core;
 

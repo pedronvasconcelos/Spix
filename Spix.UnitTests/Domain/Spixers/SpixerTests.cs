@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Spix.Domain.Core;
+using Spix.Domain.Core.SeedOfWork;
 using Spix.Domain.Entities;
 
 namespace Spix.UnitTests.Domain.Spixers;
@@ -117,15 +117,15 @@ public class SpixerTests
     [Trait("Category", TestsCategorys.Validation)]
     [Trait("Group", TestGroups.Domain)]
     [Trait("Entity", TestEntities.Spixer)]
-    public void Spixer_WhenCreatedWithInvalidContent_ShouldThrowException()
+    public void Spixer_WhenCreatedWithInvalidContent_ShouldFailure()
     {
         // Arrange
         string invalidContent = "";  
         var userId = Guid.NewGuid();
 
         // Act & Assert
-        Action act = () => new Spixer(invalidContent, userId);
-        act.Should().Throw<BusinessRuleValidationException>();
+        var result = Spixer.Create(invalidContent, userId);
+        result.IsFailure.Should().BeTrue();
     }
 
 
@@ -134,14 +134,16 @@ public class SpixerTests
     [Trait("Category", TestsCategorys.Validation)]
     [Trait("Group", TestGroups.Domain)]
     [Trait("Entity", TestEntities.Spixer)]
-    public void Spixer_WhenCreatedWithContentExceeding280Characters_ShouldThrowExceptionWithMessage()
+    public void ShouldFailure()
     {
         // Arrange
         string invalidContent = "";  
         var userId = Guid.NewGuid();
 
         // Act & Assert
-        Action act = () => new Spixer(invalidContent, userId);
-        act.Should().Throw<BusinessRuleValidationException>();
+        var result =  Spixer.Create(invalidContent, userId);
+        
+        result.IsFailure.Should().BeTrue();
+
     }
 }

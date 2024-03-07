@@ -1,5 +1,6 @@
-﻿using Spix.Domain.Core;
-using Spix.Domain.DomaiEvents;
+﻿using Spix.Domain.Core.Results;
+using Spix.Domain.Core.SeedOfWork;
+using Spix.Domain.Events;
 using Spix.Domain.Rules.Spixers;
 
 namespace Spix.Domain.Entities;
@@ -16,44 +17,59 @@ public class Spixer : Entity, IAggregateRoot
     public bool Active { get; private set; } = true;
 
 
-    public void Like(SpixerLike like)
+    public Result Like(SpixerLike like)
     {
   
         SpixerLikes.Add(like);
         LikesCount++;
         AddDomainEvent(new SpixerLikedDomainEvent(this.Id, like.UserId));
-
+        return Result.Success();
     }
 
-    public void Unlike(SpixerLike like)
+    public Result Unlike(SpixerLike like)
     {
-        SpixerLikes.Remove(like);
+
+       SpixerLikes.Remove(like);
        LikesCount--;
+       return Result.Success();
     }
 
 
-    public void Delete()
+    public Result Delete()
     {
+        if(!Active)
+            return Result.Failure(Error.None);  
         Active = false;
+        return Result.Success();
     }
     public Spixer(string content, Guid userId)
     {
-        SetContent(content);
+        Content = content;
         UserId = userId;
         Active = true;
         CreatedAt = DateTime.UtcNow;    
     }
 
-    public void DeleteSpixer()
+    public static Result<Spixer> Create(string content, Guid userId)
     {
-        Active = false;
-    }
-    private void SetContent(string content)
+        Result result = CheckRule(new ContentMustNotBeEmptyRule(content), new ContentMustNotExceedMaxLengthRule(content));  
+        if(result.IsFailure)
+            return Result.Failure<Spixer>(result.Error);        
+
+
+        return new Spixer(content, userId);
+    }       
+   
+    private Result SetContent(string content)
     {
-        CheckRule(new ContentMustNotBeEmptyRule(content));
-        CheckRule(new ContentMustNotExceedMaxLengthRule(content));
+         
+        Result result = CheckRule(new ContentMustNotBeEmptyRule(content), new ContentMustNotExceedMaxLengthRule(content));
+        
+        if(result.IsFailure)
+            return result;  
 
         Content = content;
+        return result;
     }
 
     public Spixer()

@@ -1,5 +1,8 @@
 ﻿using Spix.Application.Core;
+using Spix.Application.Core.Errors;
+using Spix.Domain.Core.Results;
 using Spix.Domain.Repositories;
+using System.ComponentModel.DataAnnotations;
 
 namespace Spix.Application.Spixers.Delete;
 
@@ -12,26 +15,26 @@ public class DeleteSpixerCommandHandler : ICommandHandlerBase<DeleteSpixerComman
         _spixerRepository = spixerRepository;
      }
 
-    public async Task<ResultBase<DeleteSpixerResponse>> Handle(DeleteSpixerCommand request, CancellationToken cancellationToken)
+    public async Task<Result<DeleteSpixerResponse>> Handle(DeleteSpixerCommand request, CancellationToken cancellationToken)
     {
 
        var spixer = await _spixerRepository.GetByIdAsync(request.SpixerId);
         if (spixer == null)
         {
-              return ResultBaseFactory.Failure<DeleteSpixerResponse>("Spixer not found");
+            return Result.Failure<DeleteSpixerResponse>(ValidationErrors.Spixer.NotFound) ;
         }
 
         if (spixer.UserId != request.UserId)
         {
-            return ResultBaseFactory.Failure<DeleteSpixerResponse>("User not authorized to delete this spixer");
+            return Result.Failure<DeleteSpixerResponse>(ValidationErrors.Spixer.UserCantDelete);
         }
 
         spixer.Delete();    
         await _spixerRepository.UpdateAsync(spixer);
         if (!await _spixerRepository.UnitOfWork.CommitAsync(cancellationToken))
         {
-            return ResultBaseFactory.Failure<DeleteSpixerResponse>("Error deleting spixer");
+            return Result.Failure<DeleteSpixerResponse>(ValidationErrors.Database.Generic);
         }
-        return ResultBaseFactory.Successful(new DeleteSpixerResponse { DeletedAt = DateTime.UtcNow }, "Success");               
+        return Result.Success(new DeleteSpixerResponse { DeletedAt = DateTime.UtcNow });               
     }
 }

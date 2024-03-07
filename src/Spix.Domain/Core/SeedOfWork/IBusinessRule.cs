@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spix.Domain.Core;
+namespace Spix.Domain.Core.SeedOfWork;
 
 public interface IBusinessRule
 {

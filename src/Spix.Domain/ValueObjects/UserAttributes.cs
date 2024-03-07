@@ -1,4 +1,4 @@
-﻿using Spix.Domain.Core;
+﻿using Spix.Domain.Core.SeedOfWork;
 using Spix.Domain.Rules;
 using Spix.Domain.Rules.Users;
 
