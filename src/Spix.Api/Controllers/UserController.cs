@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Spix.Api.Core;
 using Spix.Application.Core;
 using Spix.Application.Users.RegisterUser;
+using Spix.Domain.Core.Results;
 
 namespace Spix.Api.Controllers
 {
@@ -18,8 +19,8 @@ namespace Spix.Api.Controllers
         }
 
         [HttpPost(ApiRoutes.Authentication.Register)]
-        [ProducesResponseType(typeof(ResultBase<CreateUserResponse>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ResultBase<CreateUserResponse>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(Result<CreateUserResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Result<CreateUserResponse>), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateUserAsync([FromBody] CreateUserCommand command)
         {
             if (!ModelState.IsValid)
@@ -28,7 +29,7 @@ namespace Spix.Api.Controllers
             }
 
             var response = await _mediator.Send(command);
-            if (!response.Success)
+            if (response.IsFailure)
             {
                 return BadRequest(response);
             }
